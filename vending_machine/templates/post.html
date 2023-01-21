@@ -1,0 +1,60 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{% block title %} {{ post['title'] }} {% endblock %}</h2>
+    <table>
+    
+        <div class="card-header">
+            <i class="fas fa-table mr-1"></i>
+            Products Table
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                {% if products|length < 1 %}
+                <h4>There are no Products, add one above</h4>
+                {% else %}
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for product in products %}
+                        <tr>
+                            <td>{{ product.product_id }}</td>
+                            <td>{{ product.date_created.date() }}</td>
+                            <td>
+                                <a href="/delete-product/{{ product.product_id }}">Delete</a>
+                                <br>
+                                <a href="/update-product/{{ product.product_id }}">Update</a>  
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% endif %}
+        </div>
+    </div>
+        
+    </table>
+{% endblock %}
+
+
+<!--{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{% block title %} {{ post['title'] }} {% endblock %}</h2>
+    span class="badge badge-primary">{{ post['created'] }}</span>--> <!-- timestamp-->
+  <!--  <p>{{ post['content'] }}</p>
+{% endblock %} -->
